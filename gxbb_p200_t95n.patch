@@ -1,0 +1,102 @@
+diff --git a/gxbb_p200.dts b/gxbb_p200_t95n.dts
+index 1d39c33..58a342f 100644
+--- a/gxbb_p200.dts
++++ b/gxbb_p200_t95n.dts
+@@ -31,7 +31,7 @@
+ 
+ 	memory@00000000 {
+ 		device_type = "memory";
+-		linux,usable-memory = <0x0 0x1000000 0x0 0x3f000000>;
++		linux,usable-memory = <0x0 0x1000000 0x0 0x7f000000>;
+ 	};
+ 
+ 	reserved-memory {
+@@ -190,15 +190,15 @@
+ 			status = "okay";
+ 	};
+ 	ethmac: ethernet@0xc9410000{
+-                compatible = "amlogic, gxbb-rgmii-dwmac";
++                compatible = "amlogic, gxbb-rmii-dwmac";
+                 reg = <0x0 0xc9410000 0x0 0x10000
+                 0x0 0xc8834540 0x0 0x8>;
+                 interrupts = <0 8 1>;
+-                phy-mode= "rgmii";
++                phy-mode= "rmii";
+                 pinctrl-names = "eth_pins";
+                 pinctrl-0 = <&eth_pins>;
+                 rst_pin-gpios = <&gpio GPIOZ_14 0>;
+-                mc_val = <0x1621>;
++                mc_val = <0x1800>;
+                 resets = <&clock GCLK_IDX_ETHERNET>;
+                 reset-names = "ethpower";
+                 interrupt-names = "macirq";
+@@ -480,7 +480,7 @@
+ 		dev_name = "aml_newsd.0";
+ 		status = "okay";
+ 		reg = <0x0 0xd0070000 0x0 0x2000>;
+-		interrupts = <	0 216 1>;
++		interrupts = <	0 216 4>;
+ 		pinctrl-names =  "sdio_clk_cmd_pins", "sdio_all_pins";
+ 		pinctrl-0 = <&sdio_clk_cmd_pins>;
+ 		pinctrl-1 = <&sdio_all_pins>;
+@@ -492,7 +492,7 @@
+ 				"MMC_CAP_SD_HIGHSPEED", "MMC_CAP_NONREMOVABLE",
+ 				"MMC_CAP_UHS_SDR12","MMC_CAP_UHS_SDR25",
+ 				"MMC_CAP_UHS_SDR50","MMC_CAP_UHS_SDR104",
+-				"MMC_PM_KEEP_POWER";
++				"MMC_PM_KEEP_POWER","MMC_CAP_SDIO_IRQ";
+ 				f_min = <400000>;
+ 				f_max = <200000000>;
+ 				max_req_size = <0x20000>;          /**128KB*/
+@@ -661,7 +661,7 @@
+ 		};
+ 		keysn_1:key_1{
+ 			key-name = "mac";
+-                        key-device  = "normal";
++                        key-device  = "efuse";
+ 			key-permit = "read","write","del";
+ 		};
+ 		keysn_2:key_2{
+@@ -677,13 +677,13 @@
+ 		};
+ 		keysn_4:key_4{
+ 			key-name = "mac_bt";
+-			key-device = "normal";
++			key-device = "efuse";
+ 			key-permit = "read","write","del";
+                         key-type  = "mac";
+ 		};
+ 		keysn_5:key_5{
+ 			key-name = "mac_wifi";
+-			key-device = "normal";
++			key-device = "efuse";
+ 			key-permit = "read","write","del";
+                         key-type  = "mac";
+ 		};
+@@ -867,11 +867,11 @@
+ 		pl-periph-id = <0>; /** lm name */
+ 		clock-src = "usb0"; /** clock src */
+ 		port-id = <0>;  /** ref to mach/usb.h */
+-		port-type = <0>;	/** 0: otg, 1: host, 2: slave */
++		port-type = <1>;	/** 0: otg, 1: host, 2: slave */
+ 		port-speed = <0>; /** 0: default, high, 1: full */
+ 		port-config = <0>; /** 0: default */
+ 		port-dma = <0>; /** 0: default, 1: single, 2: incr, 3: incr4, 4: incr8, 5: incr16, 6: disable*/
+-		port-id-mode = <0>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
++		port-id-mode = <1>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
+ 		gpio-vbus-power = "GPIODV_24";
+ 		gpios = <&gpio       GPIODV_24       GPIO_ACTIVE_HIGH>;
+ 		gpio-work-mask	= <1>; /**0: work on pulldown,1:work on pullup*/
+@@ -1185,9 +1185,9 @@
+ 	};
+ 
+ 	audio_spdif_pins:audio_pin1{
+-		amlogic,setmask=<AO 0x10000>;	/*spdif_out*/
+-		amlogic,clrmask=<AO 0x40000>;	/*spdif_out*/
+-		amlogic,pins ="GPIOAO_6";		/*spdif_out*/
++		amlogic,setmask=<0x1 0x200>;	/*spdif_out*/
++		amlogic,clrmask=<0x1 0x10000>;	/*spdif_out*/
++		amlogic,pins ="GPIOY_12";		/*spdif_out*/
+ 	};
+ 
+ 	audio_btpcm_pins:audio_btpcm_pins{

@@ -1,0 +1,30 @@
+diff --git a/gxbb_p200.dts b/gxbb_p200_1G_wetek_hub.dts
+index 1d39c33..3b1b9f6 100644
+--- a/gxbb_p200.dts
++++ b/gxbb_p200_1G_wetek_hub.dts
+@@ -754,10 +754,10 @@
+ 		compatible = "amlogic, amlogic-aocec";
+ 		device_name = "aocec";
+ 		status = "okay";
+-		vendor_name = "Amlogic"; /* Max Chars: 8     */
++		vendor_name = "WeTek"; /* Max Chars: 8     */
+ 		vendor_id = <0x000000>; /* Refer to http://standards.ieee.org/develop/regauth/oui/oui.txt   */
+-		product_desc = "GXBB Mbox"; /* Max Chars: 16    */
+-		cec_osd_string = "MBox"; /* Max Chars: 14    */
++		product_desc = "WeTek Hub"; /* Max Chars: 16    */
++		cec_osd_string = "Hub"; /* Max Chars: 14    */
+ 		port_num = <1>;
+ 		arc_port_mask = <0x0>;
+ 		interrupts = <0 199 1>;
+@@ -950,9 +950,10 @@
+ 	pcm_plat: pcm_platform {
+ 		compatible = "amlogic, aml-pcm";
+ 	};
+-	spdif_codec: spdif_codec{
++	spdif_codec: spdif_codec {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "amlogic, aml-spdif-codec";
++		device_name = "dummy-spdif-dit.0";
+ 		pinctrl-names = "aml_audio_spdif";
+ 		pinctrl-0 = <&audio_spdif_pins>;
+ 	};
