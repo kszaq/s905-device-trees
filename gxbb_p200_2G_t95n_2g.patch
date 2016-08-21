@@ -1,0 +1,75 @@
+diff --git a/gxbb_p200_2G.dts b/gxbb_p200_2G_t95n_2g.dts
+index a5b922b..9b7cb53 100644
+--- a/gxbb_p200_2G.dts
++++ b/gxbb_p200_2G_t95n_2g.dts
+@@ -190,15 +190,15 @@
+ 			status = "okay";
+ 	};
+ 	ethmac: ethernet@0xc9410000{
+-                compatible = "amlogic, gxbb-rgmii-dwmac";
++                compatible = "amlogic, gxbb-rmii-dwmac";
+                 reg = <0x0 0xc9410000 0x0 0x10000
+                 0x0 0xc8834540 0x0 0x8>;
+                 interrupts = <0 8 1>;
+-                phy-mode= "rgmii";
++                phy-mode= "rmii";
+                 pinctrl-names = "eth_pins";
+                 pinctrl-0 = <&eth_pins>;
+                 rst_pin-gpios = <&gpio GPIOZ_14 0>;
+-                mc_val = <0x1621>;
++                mc_val = <0x1800>;
+                 resets = <&clock GCLK_IDX_ETHERNET>;
+                 reset-names = "ethpower";
+                 interrupt-names = "macirq";
+@@ -465,7 +465,7 @@
+ 				"MMC_CAP_SD_HIGHSPEED", "MMC_CAP_NONREMOVABLE",
+ 				"MMC_CAP_UHS_SDR12","MMC_CAP_UHS_SDR25",
+ 				"MMC_CAP_UHS_SDR50","MMC_CAP_UHS_SDR104",
+-				"MMC_PM_KEEP_POWER";
++				"MMC_PM_KEEP_POWER","MMC_CAP_SDIO_IRQ";
+ 				f_min = <400000>;
+ 				f_max = <200000000>;
+ 				max_req_size = <0x20000>;          /**128KB*/
+@@ -631,7 +631,7 @@
+ 		};
+ 		keysn_1:key_1{
+ 			key-name = "mac";
+-                        key-device  = "normal";
++                        key-device  = "efuse";
+ 			key-permit = "read","write","del";
+ 		};
+ 		keysn_2:key_2{
+@@ -647,13 +647,13 @@
+ 		};
+ 		keysn_4:key_4{
+ 			key-name = "mac_bt";
+-			key-device = "normal";
++			key-device = "efuse";
+ 			key-permit = "read","write","del";
+                         key-type  = "mac";
+ 		};
+ 		keysn_5:key_5{
+ 			key-name = "mac_wifi";
+-			key-device = "normal";
++			key-device = "efuse";
+ 			key-permit = "read","write","del";
+                         key-type  = "mac";
+ 		};
+@@ -972,7 +972,7 @@
+ 	    irq_keyup = <6>;
+ 	    irq_keydown = <7>;
+ 	};
+-
++/*
+ 	adc_keypad{
+ 		compatible = "amlogic, adc_keypad";
+ 		status = "okay";
+@@ -983,7 +983,7 @@
+ 		key_val = <0 143 271 393 510>; //voltage=0/252/478/692/824mV, val=voltage/1800mV*1023
+ 		key_tolerance = <40 40 40 40 40>;
+ 	};
+-
++*/
+ 	sysled {
+ 		compatible = "amlogic, sysled";
+ 		dev_name = "sysled";
