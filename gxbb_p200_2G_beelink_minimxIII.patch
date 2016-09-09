@@ -1,0 +1,13 @@
+diff --git a/gxbb_p200_2G.dts b/gxbb_p200_2G_beelink_minimxIII.dts
+index a5b922b..8e48a78 100644
+--- a/gxbb_p200_2G.dts
++++ b/gxbb_p200_2G_beelink_minimxIII.dts
+@@ -591,7 +591,7 @@
+ 		system:system
+ 		{
+ 			pname = "system";
+-			size = <0x0 0x40000000>;
++			size = <0x0 0x80000000>;
+ 			mask = <1>;
+ 		};
+ 		cache:cache

@@ -1,0 +1,41 @@
+diff --git a/gxbb_p200.dts b/gxbb_p200_mxq_pro_4k.dts
+index 1769407..6319d32 100644
+--- a/gxbb_p200.dts
++++ b/gxbb_p200_mxq_pro_4k.dts
+@@ -190,15 +190,15 @@
+ 			status = "okay";
+ 	};
+ 	ethmac: ethernet@0xc9410000{
+-                compatible = "amlogic, gxbb-rgmii-dwmac";
++                compatible = "amlogic, gxbb-rmii-dwmac";
+                 reg = <0x0 0xc9410000 0x0 0x10000
+                 0x0 0xc8834540 0x0 0x8>;
+                 interrupts = <0 8 1>;
+-                phy-mode= "rgmii";
++                phy-mode= "rmii";
+                 pinctrl-names = "eth_pins";
+                 pinctrl-0 = <&eth_pins>;
+                 rst_pin-gpios = <&gpio GPIOZ_14 0>;
+-                mc_val = <0x1621>;
++                mc_val = <0x1800>;
+                 resets = <&clock GCLK_IDX_ETHERNET>;
+                 reset-names = "ethpower";
+                 interrupt-names = "macirq";
+@@ -492,7 +492,7 @@
+ 				"MMC_CAP_SD_HIGHSPEED", "MMC_CAP_NONREMOVABLE",
+ 				"MMC_CAP_UHS_SDR12","MMC_CAP_UHS_SDR25",
+ 				"MMC_CAP_UHS_SDR50","MMC_CAP_UHS_SDR104",
+-				"MMC_PM_KEEP_POWER";
++				"MMC_PM_KEEP_POWER","MMC_CAP_SDIO_IRQ";
+ 				f_min = <400000>;
+ 				f_max = <200000000>;
+ 				max_req_size = <0x20000>;          /**128KB*/
+@@ -618,7 +618,7 @@
+ 		system:system
+ 		{
+ 			pname = "system";
+-			size = <0x0 0x40000000>;
++			size = <0x0 0x50000000>;
+ 			mask = <1>;
+ 		};
+ 		cache:cache
