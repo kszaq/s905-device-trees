@@ -21,6 +21,15 @@ index 1d39c33..3973fb6 100644
                  resets = <&clock GCLK_IDX_ETHERNET>;
                  reset-names = "ethpower";
                  interrupt-names = "macirq";
+@@ -480,7 +482,7 @@
+ 		dev_name = "aml_newsd.0";
+ 		status = "okay";
+ 		reg = <0x0 0xd0070000 0x0 0x2000>;
+-		interrupts = <	0 216 1>;
++		interrupts = <	0 216 4>;
+ 		pinctrl-names =  "sdio_clk_cmd_pins", "sdio_all_pins";
+ 		pinctrl-0 = <&sdio_clk_cmd_pins>;
+ 		pinctrl-1 = <&sdio_all_pins>;
 @@ -492,7 +492,7 @@
  				"MMC_CAP_SD_HIGHSPEED", "MMC_CAP_NONREMOVABLE",
  				"MMC_CAP_UHS_SDR12","MMC_CAP_UHS_SDR25",
