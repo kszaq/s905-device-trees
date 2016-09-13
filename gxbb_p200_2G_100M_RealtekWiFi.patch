@@ -1,7 +1,7 @@
-diff --git a/gxbb_p200_2G.dts b/gxbb_p200_k2_pro.dts
-index 772b5c8..8897b17 100644
+diff --git a/gxbb_p200_2G.dts b/gxbb_p200_2G_100M_RealtekWiFi.dts
+index 772b5c8..a96e5bb 100644
 --- a/gxbb_p200_2G.dts
-+++ b/gxbb_p200_k2_pro.dts
++++ b/gxbb_p200_2G_100M_RealtekWiFi.dts
 @@ -190,15 +190,15 @@
  			status = "okay";
  	};
@@ -66,3 +66,14 @@ index 772b5c8..8897b17 100644
  				f_min = <400000>;
  				f_max = <200000000>;
  				max_req_size = <0x20000>;          /**128KB*/
+@@ -826,9 +828,7 @@
+ 		port-speed = <0>; /** 0: default, high, 1: full */
+ 		port-config = <0>; /** 0: default */
+ 		port-dma = <0>; /** 0: default, 1: single, 2: incr, 3: incr4, 4: incr8, 5: incr16, 6: disable*/
+-		port-id-mode = <1>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
+-		gpio-vbus-power = "GPIODV_24";
+-		gpios = <&gpio       GPIODV_24       GPIO_ACTIVE_HIGH>;
++		port-id-mode = <0>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
+ 		gpio-work-mask	= <1>; /**0: work on pulldown,1:work on pullup*/
+ 		phy-reg = <0xc0000000>;
+ 		phy-reg-size = <0x20>;
