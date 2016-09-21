@@ -1,0 +1,197 @@
+diff --git a/gxbb_p200.dts b/gxbb_p200_2G_wetek_play_2.dts
+index 1769407..410265b 100644
+--- a/gxbb_p200.dts
++++ b/gxbb_p200_2G_wetek_play_2.dts
+@@ -13,7 +13,7 @@
+ #include "mesongxbb.dtsi"
+ / {
+ 	model = "Amlogic";
+-	amlogic-dt-id = "gxb_p200_1g";
++	amlogic-dt-id = "gxb_p200_2g";
+ 	compatible = "amlogic, Gxbb";
+ 	interrupt-parent = <&gic>;
+ 	#address-cells = <2>;
+@@ -31,7 +31,7 @@
+ 
+ 	memory@00000000 {
+ 		device_type = "memory";
+-		linux,usable-memory = <0x0 0x1000000 0x0 0x3f000000>;
++		linux,usable-memory = <0x0 0x1000000 0x0 0x7f000000>;
+ 	};
+ 
+ 	reserved-memory {
+@@ -206,23 +206,6 @@
+                 clock-names = "ethclk81";
+         };
+ 
+-	pwm {
+-		compatible = "amlogic, gx-pwm";
+-		status = "okay";
+-		pwm-outputs = <0>,<1>,<2>,<3>,<4>,<5>,<6>,<7>;
+-		reg = <0x0 0xc1108550 0x0 0x30>,
+-				<0x0 0xc8100550 0x0 0x10>;
+-		clocks = <&clock CLK_XTAL>,
+-				<&clock CLK_VID_PLL>,
+-				<&clock CLK_FPLL_DIV4>,
+-				<&clock CLK_FPLL_DIV3>;
+-		clock-names = "xtal",
+-				"vid_pll_clk",
+-				"fclk_div4",
+-				"fclk_div3";
+-		clock-select = <0x0>,<0x0>,<0x0>,<0x0>,<0x3>,<0x0>,<0x0>,<0x0>;
+-	};
+-
+ 	mesonstream {
+ 		compatible = "amlogic, codec, streambuf";
+ 		dev_name = "mesonstream";
+@@ -376,16 +359,6 @@
+ 		dev_name = "bt-dev";
+ 		status = "ok";
+ 		gpio_reset = <&gpio       GPIOX_20       GPIO_ACTIVE_HIGH>;
+-		//power_low_level;
+-	};
+-	bluesleep{
+-		compatible = "amlogic, bluesleep";
+-		dev_name = "bluesleep";
+-		status = "ok";
+-		interrupts = <  0 70 1>;
+-		bt_port_id = < 1 >;
+-		//bt_ext_wake = <&gpio       GPIOX_22       GPIO_ACTIVE_HIGH>;
+-		bt_host_wake = <&gpio       GPIOX_21       GPIO_ACTIVE_HIGH>;
+ 	};
+ 
+ 	rtc{
+@@ -473,7 +446,7 @@
+ 		gpio_dat3 = <&gpio       BOOT_3      GPIO_ACTIVE_HIGH>;
+ 		hw_reset =  <&gpio       BOOT_9      GPIO_ACTIVE_HIGH>;
+             card_type = <1>; /* 1:mmc card(include eMMC), 2:sd card(include tSD), */
+-		};
++	};
+     };
+ 	sdio{
+ 		compatible = "amlogic, aml_sd_emmc";
+@@ -638,7 +611,7 @@
+ 		compatible = "amlogic, unifykey";
+ 		status = "ok";
+ 
+-		unifykey-num = <14>;
++		unifykey-num = <11>;
+ 		unifykey-index-0 = <&keysn_0>;
+ 		unifykey-index-1 = <&keysn_1>;
+ 		unifykey-index-2 = <&keysn_2>;
+@@ -650,9 +623,6 @@
+ 		unifykey-index-8 = <&keysn_8>;
+ 		unifykey-index-9 = <&keysn_9>;
+ 		unifykey-index-10= <&keysn_10>;
+-		unifykey-index-11= <&keysn_11>;
+-		unifykey-index-12= <&keysn_12>;
+-		unifykey-index-13= <&keysn_13>;
+ 
+                 keysn_0: key_0{
+ 			key-name = "usid";
+@@ -712,21 +682,6 @@
+ 			key-device = "secure";
+ 			key-permit = "read","write","del";
+ 		};
+-		keysn_11:key_11{
+-			key-name = "PlayReadykeybox25";
+-			key-device = "secure";
+-			key-permit = "read","write","del";
+-		};
+-		keysn_12:key_12{
+-			key-name = "prpubkeybox";// PlayReady
+-			key-device = "secure";
+-			key-permit = "read","write","del";
+-		};
+-		keysn_13:key_13{
+-			key-name = "prprivkeybox";// PlayReady
+-			key-device = "secure";
+-			key-permit = "read","write","del";
+-		};
+         };//End unifykey
+ 	amhdmitx: amhdmitx{
+ 		compatible = "amlogic, amhdmitx";
+@@ -871,10 +826,10 @@
+ 		port-speed = <0>; /** 0: default, high, 1: full */
+ 		port-config = <0>; /** 0: default */
+ 		port-dma = <0>; /** 0: default, 1: single, 2: incr, 3: incr4, 4: incr8, 5: incr16, 6: disable*/
+-		port-id-mode = <1>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
+-		gpio-vbus-power = "GPIODV_24";
+-		gpios = <&gpio       GPIODV_24       GPIO_ACTIVE_HIGH>;
+-		gpio-work-mask	= <1>; /**0: work on pulldown,1:work on pullup*/
++		port-id-mode = <0>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
++//		gpio-vbus-power = "GPIODV_24";
++//		gpios = <&gpio       GPIODV_24       GPIO_ACTIVE_HIGH>;
++//		gpio-work-mask	= <1>; /**0: work on pulldown,1:work on pullup*/
+ 		phy-reg = <0xc0000000>;
+ 		phy-reg-size = <0x20>;
+ 		usb-fifo = <1024>;
+@@ -1133,10 +1088,12 @@
+ 		};
+ 	};
+ 
+-/*
+ 	dvb {
+-		compatible = "amlogic, dvb";
+-		dev_name = "dvb";
++		compatible = "amlogic,dvb";
++		dev_name = "wetek-dvb";
++		status = "okay";
++		fec_reset_gpio-gpios = <&gpio GPIOY_13 GPIO_ACTIVE_HIGH>;
++		power_ctrl_gpio-gpios = <&gpio GPIOY_15 GPIO_ACTIVE_LOW>;
+ 		//"parallel","serial","disable"
+ 		ts0 = "parallel";
+ 		ts0_control = <0>;
+@@ -1150,7 +1107,7 @@
+ 				&clock GCLK_IDX_HIU_PARSER_TOP>;
+ 		reset-names = "demux", "asyncfifo", "ahbarb0", "uparsertop";
+ 	};
+-	dvbfe {
++/*	dvbfe {
+ 		compatible = "amlogic, dvbfe";
+ 		dev_name = "dvbfe";
+ 		dtv_demod0 = "Mxl241";
+@@ -1161,11 +1118,10 @@
+ 		fe0_dtv_demod = <0>;
+ 		fe0_ts = <0>;
+ 		fe0_dev = <0>;
+-	};
+-*/
++	};*/
+ };
+ &i2c_a {
+-  status = "disabled";
++  status = "okay";
+   /*p200: multiplex with usb PWR, disbaled*/
+ };
+ /*
+@@ -1174,9 +1130,6 @@
+ };
+ */
+ 
+-&i2c_slave {
+-	status = "disabled";
+-};
+ &pinmux {
+ 	audio_pins:audio_pin{
+ 		amlogic,setmask=<AO 0x78000000>;
+@@ -1185,9 +1138,9 @@
+ 	};
+ 
+ 	audio_spdif_pins:audio_pin1{
+-		amlogic,setmask=<1 0x200>;    /*spdif_out*/
+-		amlogic,clrmask=<1 0x10000>;  /*spdif_out*/
+-		amlogic,pins ="GPIOY_12";     /*spdif_out*/
++		amlogic,setmask=<1 0x200>;	/*spdif_out*/
++		amlogic,clrmask=<1 0x10000>;	/*spdif_out*/
++		amlogic,pins ="GPIOY_12";	/*spdif_out*/
+ 	};
+ 
+ 	audio_btpcm_pins:audio_btpcm_pins{
+@@ -1208,3 +1161,6 @@
+ &defendkey {
+ 	status = "okay";
+ };
++&aml_remote {
++	status = "okay";
++};
