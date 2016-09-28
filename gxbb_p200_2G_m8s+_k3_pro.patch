@@ -1,0 +1,37 @@
+diff --git a/gxbb_p200.dts b/gxbb_p200_2G_m8s+_k3_pro.dts
+index 7a37b87..d628886 100644
+--- a/gxbb_p200.dts
++++ b/gxbb_p200_2G_m8s+_k3_pro.dts
+@@ -31,7 +31,7 @@
+ 
+ 	memory@00000000 {
+ 		device_type = "memory";
+-		linux,usable-memory = <0x0 0x1000000 0x0 0x3f000000>;
++		linux,usable-memory = <0x0 0x1000000 0x0 0x7f000000>;
+ 	};
+ 
+ 	reserved-memory {
+@@ -400,10 +400,10 @@
+ 		compatible = "amlogic, aml_wifi";
+ 		dev_name = "aml_wifi";
+ 		status = "okay";
+-		interrupt_pin = <&gpio       GPIOX_7       GPIO_ACTIVE_HIGH>;
++		interrupt_pin = <&gpio       GPIOX_11       GPIO_ACTIVE_HIGH>;
+ 		interrupts = <	0 68 4>;
+ 		irq_trigger_type = "GPIO_IRQ_LOW";
+-		power_on_pin = <&gpio       GPIOX_6       GPIO_ACTIVE_HIGH>;
++		power_on_pin = <&gpio       GPIOX_10       GPIO_ACTIVE_HIGH>;
+ 		dhd_static_buf;
+ 		pinctrl-names = "wifi_32k_pins";
+ 		pinctrl-0 = <&wifi_32k_pins>;
+@@ -871,9 +871,7 @@
+ 		port-speed = <0>; /** 0: default, high, 1: full */
+ 		port-config = <0>; /** 0: default */
+ 		port-dma = <0>; /** 0: default, 1: single, 2: incr, 3: incr4, 4: incr8, 5: incr16, 6: disable*/
+-		port-id-mode = <1>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
+-		gpio-vbus-power = "GPIODV_24";
+-		gpios = <&gpio       GPIODV_24       GPIO_ACTIVE_HIGH>;
++		port-id-mode = <0>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
+ 		gpio-work-mask	= <1>; /**0: work on pulldown,1:work on pullup*/
+ 		phy-reg = <0xc0000000>;
+ 		phy-reg-size = <0x20>;
