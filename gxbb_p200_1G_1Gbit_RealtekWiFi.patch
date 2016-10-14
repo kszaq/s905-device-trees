@@ -1,0 +1,41 @@
+diff --git a/gxbb_p200.dts b/gxbb_p200_1G_1Gbit_RealtekWiFi.dts
+index 1769407..cc65435 100644
+--- a/gxbb_p200.dts
++++ b/gxbb_p200_1G_1Gbit_RealtekWiFi.dts
+@@ -371,6 +371,7 @@
+ 			3: 250.0M    4: 333.3M    5: 400.0M
+ 			6: 500.0M    7: 666.7M */
+ 	};
++	/*
+ 	bt-dev{
+ 		compatible = "amlogic, bt-dev";
+ 		dev_name = "bt-dev";
+@@ -378,6 +379,7 @@
+ 		gpio_reset = <&gpio       GPIOX_20       GPIO_ACTIVE_HIGH>;
+ 		//power_low_level;
+ 	};
++	*/
+ 	bluesleep{
+ 		compatible = "amlogic, bluesleep";
+ 		dev_name = "bluesleep";
+@@ -402,9 +404,9 @@
+ 		status = "okay";
+ 		interrupt_pin = <&gpio       GPIOX_7       GPIO_ACTIVE_HIGH>;
+ 		interrupts = <	0 68 4>;
+-		irq_trigger_type = "GPIO_IRQ_LOW";
++		irq_trigger_type = "GPIO_IRQ_HIGH";
+ 		power_on_pin = <&gpio       GPIOX_6       GPIO_ACTIVE_HIGH>;
+-		dhd_static_buf;
++		power_on_pin2 = <&gpio       GPIOX_20       GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "wifi_32k_pins";
+ 		pinctrl-0 = <&wifi_32k_pins>;
+ 	};
+@@ -480,7 +482,7 @@
+ 		dev_name = "aml_newsd.0";
+ 		status = "okay";
+ 		reg = <0x0 0xd0070000 0x0 0x2000>;
+-		interrupts = <	0 216 1>;
++		interrupts = <	0 216 4>;
+ 		pinctrl-names =  "sdio_clk_cmd_pins", "sdio_all_pins";
+ 		pinctrl-0 = <&sdio_clk_cmd_pins>;
+ 		pinctrl-1 = <&sdio_all_pins>;
