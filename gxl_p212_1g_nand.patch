@@ -1,0 +1,13 @@
+diff --git a/gxl_p212_1g.dts b/gxl_p212_1g_nand.dts
+index 7260c84..3f730b2 100644
+--- a/gxl_p212_1g.dts
++++ b/gxl_p212_1g_nand.dts
+@@ -478,7 +478,7 @@
+ 	nand{
+ 		compatible = "amlogic, aml_nand";
+ 		dev_name = "nand";
+-		status = "disabled";
++		status = "ok";
+ 		reg = <0x0 0xd0074800 0x0 0x200>;
+ 		interrupts = <	0 34 1 >;
+ 		pinctrl-names = "nand_rb_mod","nand_norb_mod", "nand_cs_pins_only";
