@@ -1,0 +1,13 @@
+diff --git a/gxbb_p201.dts b/gxbb_p201_2G.dts
+index 7a37b87..d628886 100644
+--- a/gxbb_p201.dts
++++ b/gxbb_p201_2G.dts
+@@ -31,7 +31,7 @@
+ 
+ 	memory@00000000 {
+ 		device_type = "memory";
+-		linux,usable-memory = <0x0 0x1000000 0x0 0x3f000000>;
++		linux,usable-memory = <0x0 0x1000000 0x0 0x7f000000>;
+ 	};
+ 
+ 	reserved-memory {
