@@ -1,0 +1,148 @@
+diff --git a/gxbb_p200_2G.dts b/gxbb_p200_2G_minix_neo_u1.dts
+index 2704e12..5d5bc4c 100644
+--- a/gxbb_p200_2G.dts
++++ b/gxbb_p200_2G_minix_neo_u1.dts
+@@ -443,6 +443,7 @@
+ 			gpio_dat3 = <&gpio       CARD_4       GPIO_ACTIVE_HIGH>;
+ 			jtag_pin =  <&gpio       CARD_0       GPIO_ACTIVE_HIGH>;
+ 			gpio_cd =  <&gpio       CARD_6       GPIO_ACTIVE_HIGH>;
++			voltage =   <&gpio_ao    GPIOAO_5     GPIO_ACTIVE_HIGH>;
+ 	   		irq_in = <3>;
+ 	   		irq_out = <5>;
+ 	   		card_type = <5>; /* 0:unknown, 1:mmc card(include eMMC), 2:sd card(include tSD), 3:sdio device(ie:sdio-wifi), 4:SD combo (IO+mem) card, 5:NON sdio device(means sd/mmc card), other:reserved */
+@@ -704,6 +705,12 @@
+ 		ranges;
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
++		pwr-ctrl = <&pwr_ctrl>;
++		
++        	pwr_ctrl: pwr_ctrl{
++            		pwr_5v_on = <&gpio       GPIOY_5       GPIO_ACTIVE_HIGH>;
++            		PWR_STBY_PWREN = <&gpio       GPIOY_7       GPIO_ACTIVE_HIGH>;
++        	};
+ 	};
+ 	aocec: aocec{
+ 		compatible = "amlogic, amlogic-aocec";
+@@ -822,13 +829,14 @@
+ 		pl-periph-id = <0>; /** lm name */
+ 		clock-src = "usb0"; /** clock src */
+ 		port-id = <0>;  /** ref to mach/usb.h */
+-		port-type = <1>;	/** 0: otg, 1: host, 2: slave */
++		port-type = <0>;	/** 0: otg, 1: host, 2: slave */
+ 		port-speed = <0>; /** 0: default, high, 1: full */
+ 		port-config = <0>; /** 0: default */
+ 		port-dma = <0>; /** 0: default, 1: single, 2: incr, 3: incr4, 4: incr8, 5: incr16, 6: disable*/
+-		port-id-mode = <1>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
+-		gpio-vbus-power = "GPIODV_24";
+-		gpios = <&gpio       GPIODV_24       GPIO_ACTIVE_HIGH>;
++		port-id-mode = <0>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
++		gpio-vbus-power = "GPIOY_3";
++		gpios = <&gpio       GPIOY_3       GPIO_ACTIVE_HIGH>;
++		gpio-h = <&gpio       GPIOY_4       GPIO_ACTIVE_LOW>;
+ 		gpio-work-mask	= <1>; /**0: work on pulldown,1:work on pullup*/
+ 		phy-reg = <0xc0000000>;
+ 		phy-reg-size = <0x20>;
+@@ -923,22 +931,23 @@
+ 	/* endof AUDIO MESON8 DEVICES */
+ 
+ 	/* AUDIO board specific */
+-	dummy_codec:dummy{
++	/* dummy_codec:dummy{
+ 		#sound-dai-cells = <0>;
+ 		compatible = "amlogic, aml_dummy_codec";
+ 		status = "okay";
+-	};
++	}; */
+ 	aml_m8_snd {
+ 		compatible = "aml, aml_snd_m8";
+ 		status = "okay";
+ 		aml-sound-card,format = "i2s";
+ 		aml_sound_card,name = "AML-M8AUDIO";
+ 		aml,audio-routing =
+-				"Ext Spk","LOUTL",
+-				"Ext Spk","LOUTR";
+-
+-		mute_gpio-gpios = <&gpio GPIOH_3 0>;
+-		hp_disable;
++				"Ext Spk","LOUT2",
++				"Ext Spk","ROUT2",
++				"LINPUT2","MAIN MIC",
++				"RINPUT2","MAIN MIC";
++	   	gpio_hp_det	= <&gpio GPIOY_11 0>;
++		hp_det_inv;
+ 		hp_paraments = <800 300 0 5 1>;
+ 		pinctrl-names = "aml_snd_m8";
+ 		pinctrl-0 = <&audio_pins>;
+@@ -955,7 +964,7 @@
+ 			sound-dai = <&pcm_dai>;
+ 		};
+ 		codec0: codec0 {
+-			sound-dai = <&dummy_codec>;
++			sound-dai = <&es8323>;
+ 		};
+ 		codec1: codec1 {
+ 			sound-dai = <&spdif_codec>;
+@@ -980,7 +989,7 @@
+ 
+ 	adc_keypad{
+ 		compatible = "amlogic, adc_keypad";
+-		status = "okay";
++		status = "disable";
+ 		key_name = "menu", "vol-","vol+", "esc", "home";
+ 		key_num = <5>;
+ 		key_code = <139 114 115 1 102>;
+@@ -1125,14 +1134,41 @@
+ */
+ };
+ &i2c_a {
+-  status = "disabled";
+-  /*p200: multiplex with usb PWR, disbaled*/
++  status = "okay";
++	es8323: es8323@10 {
++		#sound-dai-cells = <0>;
++		compatible = "es, es8323";
++		reg = <0x10>;
++	};
++  /*p200_2g: audio chip, ok*/
+ };
+-/*
++
+ &i2c_b {
+   status = "okay";
++    rtc_hym8563{
++            compatible = "amlogic, rtc_hym8563";                      /** for driver probe, must have  */
++	    	dev_name = "rtc_hym8563";
++	    	status = "okay";         
++            reg = <0x51>;                                     /** device i2c address, must have        */
++            interrupts = <0 64 1>;
++            gpio-rtc-irq = <&gpio       GPIOY_6       GPIO_ACTIVE_HIGH>;
++        };
++
++	minix_mcu{
++		compatible = "amlogic,minix_mcu";
++		status = "okay";
++		reg = <0x15>;
++
++
++	};
++
++	minix_mcu_isp{
++		compatible = "amlogic,minix_mcu_isp";
++		reg = <0x35>;
++	};
++
++  /*MCU */
+ };
+-*/
+ 
+ &pinmux {
+ 	audio_pins:audio_pin{
+@@ -1142,7 +1178,7 @@
+ 	};
+ 
+ 	audio_spdif_pins:audio_pin1{
+-		amlogic,setmask=<1 0x200>;    /*spdif_out*/
++		amlogic,setmask=<1 0x10200>;    /*spdif_out*/
+ 		amlogic,clrmask=<1 0x10000>;  /*spdif_out*/
+ 		amlogic,pins ="GPIOY_12";     /*spdif_out*/
+ 	};
