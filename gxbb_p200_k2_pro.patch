@@ -1,3 +1,5 @@
+diff --git a/gxbb_p200_2G.dts b/gxbb_p200_k2_pro.dts
+index 2704e12..243748e 100644
 --- a/gxbb_p200_2G.dts
 +++ b/gxbb_p200_k2_pro.dts
 @@ -190,15 +190,15 @@
@@ -28,15 +30,6 @@
  		pinctrl-names = "emmc_clk_cmd_pins", "emmc_all_pins";
  		pinctrl-0 = <&emmc_clk_cmd_pins>;
  		pinctrl-1 = <&emmc_all_pins>;
-@@ -798,7 +798,7 @@
- 		port-speed = <0>; /** 0: default, 1: high, 2: full */
- 		port-config = <0>; /** 0: default */
- 		port-dma = <0>; /** 0: default, 1: single, 2: incr, 3: incr4, 4: incr8, 5: incr16, 6: disable*/
--		port-id-mode = <1>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
-+		port-id-mode = <1>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
- 		phy-reg = <0xc0000020>;
- 		phy-reg-size = <0x20>;
- 		usb-fifo = <1024>;
 @@ -826,9 +826,9 @@
  		port-speed = <0>; /** 0: default, high, 1: full */
  		port-config = <0>; /** 0: default */
@@ -50,7 +43,7 @@
  		gpio-work-mask	= <1>; /**0: work on pulldown,1:work on pullup*/
  		phy-reg = <0xc0000000>;
  		phy-reg-size = <0x20>;
-@@ -1092,11 +1090,12 @@
+@@ -1092,11 +1092,12 @@
  			};
  		};
  	};
@@ -66,7 +59,7 @@
  		//"parallel","serial","disable"
  		ts0 = "parallel";
  		ts0_control = <0>;
-@@ -1111,28 +1110,33 @@
+@@ -1111,28 +1112,33 @@
  		reset-names = "demux", "asyncfifo", "ahbarb0", "uparsertop";
  	};
  	dvbfe {
