@@ -1,8 +1,53 @@
 diff --git a/gxl_p230_2g.dts b/gxl_p230_k1_pro.dts
-index 0b7ce9e5..7e44448 100644
+index 0b7ce9e5..7e8f659 100644
 --- a/gxl_p230_2g.dts
 +++ b/gxl_p230_k1_pro.dts
-@@ -1136,8 +1136,49 @@
+@@ -543,18 +543,17 @@
+ 					};
+ 	};*/
+ 	partitions: partitions{
+-        parts = <11>;
++        parts = <10>;
+ 		part-0 = <&logo>;
+ 		part-1 = <&recovery>;
+ 		part-2 = <&rsv>;
+ 		part-3 = <&tee>;
+ 		part-4 = <&crypt>;
+ 		part-5 = <&misc>;
+-		part-6 = <&instaboot>;
+-		part-7 = <&boot>;
+-		part-8 = <&system>;
+-		part-9 = <&cache>;
+-		part-10 = <&data>;
++		part-6 = <&boot>;
++		part-7 = <&system>;
++		part-8 = <&cache>;
++		part-9 = <&data>;
+ 
+ 		logo:logo{
+ 			pname = "logo";
+@@ -586,11 +585,6 @@
+ 			size = <0x0 0x2000000>;
+ 			mask = <1>;
+ 		};
+-		instaboot:instaboot{
+-			pname = "instaboot";
+-			size = <0x0 0x20000000>;
+-			mask = <1>;
+-		};
+ 		boot:boot
+ 		{
+ 			pname = "boot";
+@@ -600,7 +594,7 @@
+ 		system:system
+ 		{
+ 			pname = "system";
+-			size = <0x0 0x40000000>;
++			size = <0x0 0x80000000>;
+ 			mask = <1>;
+ 		};
+ 		cache:cache
+@@ -1136,8 +1130,49 @@
  			};
  		};
  	};
@@ -53,7 +98,7 @@ index 0b7ce9e5..7e44448 100644
  &pinmux {
  	audio_pins:audio_pin{
  		amlogic,setmask=<6 0x7800000>;
-@@ -1157,6 +1198,29 @@
+@@ -1157,6 +1192,29 @@
  		amlogic,clrmask=<5 0x3c33>;
  		amlogic,pins ="GPIOX_8", "GPIOX_9", "GPIOX_10", "GPIOX_11";
  	};
