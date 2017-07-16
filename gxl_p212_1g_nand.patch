@@ -1,8 +1,8 @@
 diff --git a/gxl_p212_1g.dts b/gxl_p212_1g_nand.dts
-index 7260c84..3f730b2 100644
+index 74a682b..7588433 100644
 --- a/gxl_p212_1g.dts
 +++ b/gxl_p212_1g_nand.dts
-@@ -478,7 +478,7 @@
+@@ -522,7 +522,7 @@
  	nand{
  		compatible = "amlogic, aml_nand";
  		dev_name = "nand";

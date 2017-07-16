@@ -1,17 +1,17 @@
 diff --git a/gxm_q200_2g.dts b/gxm_q200_k3_pro.dts
-index 770754b..4e47cc0 100644
+index 4a46647..2ab9599 100644
 --- a/gxm_q200_2g.dts
 +++ b/gxm_q200_k3_pro.dts
-@@ -40,7 +40,7 @@
+@@ -42,7 +42,7 @@
  	};
  	memory@00000000 {
  		device_type = "memory";
--		linux,usable-memory = <0x0 0x100000 0x0 0x7ff00000>;
-+		linux,usable-memory = <0x0 0x100000 0x0 0xbff00000>;
+-		linux,usable-memory = <0x0 0x100000 0x0 0x7f000000>;
++		linux,usable-memory = <0x0 0x100000 0x0 0xbf000000>;
  	};
  
  	reserved-memory {
-@@ -1183,8 +1183,49 @@
+@@ -1255,8 +1255,49 @@
  			};
  		};
  	};
@@ -62,7 +62,7 @@ index 770754b..4e47cc0 100644
  &pinmux {
  	audio_pins:audio_pin{
  		amlogic,setmask=<6 0x7800000>;
-@@ -1204,6 +1245,29 @@
+@@ -1276,6 +1317,29 @@
  		amlogic,clrmask=<5 0x3c33>;
  		amlogic,pins ="GPIOX_8", "GPIOX_9", "GPIOX_10", "GPIOX_11";
  	};

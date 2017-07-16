@@ -1,8 +1,8 @@
 diff --git a/gxl_p212_2g.dts b/gxl_p212_2g_kvim.dts
-index 196eeeb..688589f 100644
+index 87fd2ee..cda861f 100644
 --- a/gxl_p212_2g.dts
 +++ b/gxl_p212_2g_kvim.dts
-@@ -25,7 +25,7 @@
+@@ -27,7 +27,7 @@
  #include "mesongxl.dtsi"
  / {
  	model = "Amlogic";
@@ -11,7 +11,7 @@ index 196eeeb..688589f 100644
  	compatible = "amlogic, Gxbb";
  	interrupt-parent = <&gic>;
  	#address-cells = <2>;
-@@ -132,7 +132,7 @@
+@@ -140,7 +140,7 @@
  		compatible = "amlogic, sysled";
  		dev_name = "sysled";
  		status = "okay";
@@ -20,16 +20,7 @@ index 196eeeb..688589f 100644
  		led_active_low = <1>;
  	};
  
-@@ -204,8 +204,6 @@
- 						0x0 0xc8834558 0x0 0xc>;
- 						interrupts = <0 8 1>;
- 						phy-mode= "rmii";
--						pinctrl-names = "internal_eth_pins";
--						pinctrl-0 = <&internal_eth_pins>;
- 						mc_val = <0x1800>;
- 						resets = <&clock GCLK_IDX_ETHERNET>;
- 						reset-names = "ethpower";
-@@ -374,7 +372,7 @@
+@@ -411,7 +411,7 @@
  		alarm_reg_addr = <0xc81000a8>;
  		timer_e_addr = <0xc1109988>;
  		init_date = "2015/01/01";
@@ -38,9 +29,9 @@ index 196eeeb..688589f 100644
  	};
  
  	wifi{
-@@ -389,31 +387,6 @@
- 		pinctrl-names = "wifi_32k_pins";
- 		pinctrl-0 = <&wifi_32k_pins>;
+@@ -433,31 +433,6 @@
+ 		pwm_channel1_conf = <30541 15270 6>;
+ 		pwm_channel2_conf = <30518 15259 9>;
  	};
 -	emmc{
 -		compatible = "amlogic, aml_sd_emmc";
@@ -70,7 +61,7 @@ index 196eeeb..688589f 100644
      sd{
          compatible = "amlogic, aml_sd_emmc";
          dev_name = "aml_newsd.0";
-@@ -452,6 +425,31 @@
+@@ -496,6 +471,31 @@
  	   		card_type = <5>; /* 0:unknown, 1:mmc card(include eMMC), 2:sd card(include tSD), 3:sdio device(ie:sdio-wifi), 4:SD combo (IO+mem) card, 5:NON sdio device(means sd/mmc card), other:reserved */
  		};
      };
@@ -102,7 +93,7 @@ index 196eeeb..688589f 100644
  	sdio{
  		compatible = "amlogic, aml_sd_emmc";
  		dev_name = "aml_newsd.0";
-@@ -863,7 +861,7 @@
+@@ -907,7 +907,7 @@
  		port-id-mode = <0>; /** 0: hardware, 1: sw_host, 2: sw_slave*/
  		usb-fifo = <728>;
  		cpu-type = "gxl";
@@ -111,7 +102,7 @@ index 196eeeb..688589f 100644
  		phy-reg = <0xd0078000>;
  		phy-reg-size = <0xa0>;
  		resets = <&clock GCLK_IDX_USB_GENERAL
-@@ -1018,6 +1016,17 @@
+@@ -1091,6 +1091,17 @@
  		irq_keyup = <6>;
  		irq_keydown = <7>;
  	};
@@ -129,7 +120,7 @@ index 196eeeb..688589f 100644
  	aml_sensor0: aml-sensor@0 {
  		compatible = "amlogic, aml-thermal";
  		device_name = "thermal";
-@@ -1145,3 +1154,12 @@
+@@ -1218,3 +1229,12 @@
  &defendkey {
  	status = "okay";
  };

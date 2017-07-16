@@ -1,13 +1,13 @@
 diff --git a/gxm_q200_2g.dts b/gxm_q200_3g.dts
-index 770754b..4b707e0 100644
+index 4a46647..e7cf973 100644
 --- a/gxm_q200_2g.dts
 +++ b/gxm_q200_3g.dts
-@@ -40,7 +40,7 @@
+@@ -42,7 +42,7 @@
  	};
  	memory@00000000 {
  		device_type = "memory";
--		linux,usable-memory = <0x0 0x100000 0x0 0x7ff00000>;
-+		linux,usable-memory = <0x0 0x100000 0x0 0xbff00000>;
+-		linux,usable-memory = <0x0 0x100000 0x0 0x7f000000>;
++		linux,usable-memory = <0x0 0x100000 0x0 0xbf000000>;
  	};
  
  	reserved-memory {
