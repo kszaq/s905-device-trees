@@ -1,0 +1,14 @@
+#include "gxl_p212_1g.dts"
+
+/ {
+	nand {
+		status = "okay";
+	};
+
+	partitions:partitions {
+		system:system {
+			size = <0x0 0x60000000>;
+		};
+	};
+
+};
