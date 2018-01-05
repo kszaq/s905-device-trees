@@ -1,6 +1,7 @@
 #include "gxbb_p200.dts"
 
 /{
+	le-dt-id = "gxbb_p200_1G_1Gbit_RealtekWiFi";
 	/delete-node/ bt-dev;
 
 	wifi {

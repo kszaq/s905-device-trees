@@ -1,6 +1,7 @@
 #include "gxbb_p200.dts"
 
 /{
+	le-dt-id = "gxbb_p200_2G_m8s+_k3_pro";
 	memory@00000000 {
 		linux,usable-memory = <0x0 0x1000000 0x0 0x7f000000>;
 	};

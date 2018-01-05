@@ -1,6 +1,7 @@
 #include "gxl_p231_2g.dts"
 
 /{
+	le-dt-id = "gxl_p231_2g_dvb";
 	dvb {
 		compatible = "amlogic,dvb";
 		dev_name = "dvb";

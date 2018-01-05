@@ -1,6 +1,7 @@
 #include "gxl_p212_2g.dts"
 
 /{
+	le-dt-id = "gxl_p212_2g_kvim";
 	amlogic-dt-id = "kvim";
 
 	sysled {

@@ -1,6 +1,7 @@
 #include "gxbb_p200_2G.dts"
 
 /{
+	le-dt-id = "gxbb_p200_k2_pro";
 	ethmac: ethernet@0xc9410000 {
 		compatible = "amlogic, gxbb-rmii-dwmac";
 		phy-mode= "rmii";

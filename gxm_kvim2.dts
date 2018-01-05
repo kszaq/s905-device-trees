@@ -1,6 +1,7 @@
 #include "gxm_q200_2g.dts"
 
 /{
+	le-dt-id = "gxm_kvim2";
 	compatible = "kvim";
 	amlogic-dt-id = "kvim";
 

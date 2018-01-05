@@ -1,6 +1,7 @@
 #include "gxm_q200_2g.dts"
 
 /{
+	le-dt-id = "gxm_q200_2g_minix_neo_u9";
 	sysled {
 		led_gpio = <&gpio GPIOAO_9 GPIO_ACTIVE_HIGH>;
 	};
