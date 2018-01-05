@@ -1,0 +1,16 @@
+#include "gxbb_p200.dts"
+
+/{
+	/delete-node/ bt-dev;
+
+	wifi {
+		irq_trigger_type = "GPIO_IRQ_HIGH";
+		/delete-property/ dhd_static_buf;
+		power_on_pin2 = <&gpio	   GPIOX_20	   GPIO_ACTIVE_HIGH>;
+	};
+
+	sdio {
+		interrupts = <	0 216 4>;
+	};
+
+};

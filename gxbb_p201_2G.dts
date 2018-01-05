@@ -1,0 +1,8 @@
+#include "gxbb_p201.dts"
+
+/{
+	memory@00000000 {
+		device_type = "memory";
+		linux,usable-memory = <0x0 0x1000000 0x0 0x7f000000>;
+	};
+};

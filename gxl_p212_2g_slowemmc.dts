@@ -1,0 +1,9 @@
+#include "gxl_p212_2g.dts"
+
+/{
+	emmc {
+		emmc {
+			caps2 = "MMC_CAP2_HS200";
+		};
+	};
+};

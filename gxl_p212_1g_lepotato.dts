@@ -1,8 +1,8 @@
 #include "gxl_p212_1g.dts"
 
 / {
-        leds: gpio_leds {
-                compatible = "gpio-leds";
+	leds: gpio_leds {
+		compatible = "gpio-leds";
 
 		system {
 			label = "librecomputer:system-status";
