@@ -1,0 +1,13 @@
+#include "gxl_p212_1g.dts"
+
+/ {
+	le-dt-id = "gxl_p212_1g_tx3mini";
+	fd628_dev {
+		compatible = "amlogic,fd628_dev";
+		status = "okay";
+		fd628_gpio_clk = <&gpio GPIODV_27 GPIO_ACTIVE_HIGH>;
+		fd628_gpio_dat = <&gpio GPIODV_26 GPIO_ACTIVE_HIGH>;
+		fd628_gpio_stb = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
+	};
+
+};
