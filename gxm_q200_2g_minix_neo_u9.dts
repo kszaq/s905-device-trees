@@ -10,12 +10,6 @@
 		status = "disabled";
 	};
 
-	partitions:partitions {
-		system:system {
-			size = <0x0 0x80000000>;
-		};
-	};
-
 	unifykey {
 		keysn_8:key_8 {
 			key-type = "sha1";
