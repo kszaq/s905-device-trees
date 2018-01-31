@@ -19,4 +19,6 @@
 	gpio_keypad {
 		status = "disabled";
 	};
+
+	/delete-node/ partitions;
 };
